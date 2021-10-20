@@ -44,5 +44,9 @@ let res = validator(book_schema, data);
 console.log(res.isValid)
 // false
 
+if (res.isValid == false) {
+    return exit(1)
+}
+
 console.log(res.errors)
 // {author.age: "is required", related_titles.0: 'type must be string', related_titles.1: 'type must be string'}
