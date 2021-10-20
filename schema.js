@@ -1,10 +1,4 @@
-"use strict";
-
-let validator = require('tiny-json-validator');
-
-const data = require("./sample.json");
-
-let book_schema = {
+export default schema = {
     type: 'object',
     required: true,
     properties: {
@@ -38,13 +32,3 @@ let book_schema = {
         }
     }
 };
-
-let res = validator(book_schema, data);
-
-console.log(res.isValid)
-// false
-
-console.log(res.errors)
-// {author.age: "is required", related_titles.0: 'type must be string', related_titles.1: 'type must be string'}
-
-return res.isValid
