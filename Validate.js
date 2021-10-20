@@ -46,5 +46,3 @@ console.log(res.isValid)
 
 console.log(res.errors)
 // {author.age: "is required", related_titles.0: 'type must be string', related_titles.1: 'type must be string'}
-
-return res.isValid
