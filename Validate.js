@@ -1,50 +1,64 @@
 "use strict";
+let validator = require("tiny-json-validator");
 
 const fs = require("fs");
 
-let validator = require('tiny-json-validator');
-
-const data = require("./sample.json");
+var filesPath = "Files/";
 
 let book_schema = {
-    type: 'object',
-    required: true,
-    properties: {
-        title: {
-            type: 'string',
-            required: true
+  type: "object",
+  required: true,
+  properties: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    author: {
+      type: "object",
+      required: true,
+      properties: {
+        name: {
+          type: "string",
+          required: true,
         },
-        author: {
-            type: 'object',
-            required: true,
-            properties: {
-                name: {
-                    type: 'string',
-                    required: true
-                },
-                age: {
-                    type: 'integer',
-                    required: true
-                },
-                city: {
-                    type: 'string'
-                }
-            }
+        age: {
+          type: "integer",
+          required: true,
         },
-        related_titles: {
-            type: 'array',
-            required: true,
-            items: {
-                type: 'string'
-            }
-        }
-    }
+        city: {
+          type: "string",
+        },
+      },
+    },
+    related_titles: {
+      type: "array",
+      required: true,
+      items: {
+        type: "string",
+      },
+    },
+  },
 };
 
-let res = validator(book_schema, data);
+fs.readdir(filesPath, (err, files) => {
+  if (err) {
+    console.log(err);
+    return "";
+  }
 
-console.log(res.isValid)
-// false
+  files.forEach((file) => {
+    if (file.split(".").pop() == "json") {
+      const data = require("./" + filesPath + file);
+      const res = validator(book_schema, data);
 
-console.log(res.errors)
-// {author.age: "is required", related_titles.0: 'type must be string', related_titles.1: 'type must be string'}
+      console.log("File name: " + file);
+      console.log("File valid: " + res.isValid);
+
+      if (Object.keys(res.errors) != 0) {
+          console.log(res.errors);
+      }
+      
+      console.log("\n");
+    }
+  });
+});
