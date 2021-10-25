@@ -1,7 +1,7 @@
 {
     "title": "A Game of Thrones",
     "author": {
-        "name": "George R. R. Marti"
+        "name": "George R. R. Martin"
     },
     "related_titles": [1, 2, "A Song of Ice and Fire"],
     "extra": "this will get removed"

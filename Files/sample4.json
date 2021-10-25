@@ -1,0 +1,9 @@
+{
+    "title": "A Game",
+    "author": {
+        "name": "George Martin",
+        "age": 79
+    },
+    "related_titles": ["A Song of Ice and Fire", "Just Another Book"],
+    "extra": "this will get removed"
+}
